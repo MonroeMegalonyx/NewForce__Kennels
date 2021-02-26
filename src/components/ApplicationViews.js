@@ -6,6 +6,8 @@ import { AnimalCard } from "./animal/AnimalCard";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { AnimalList } from "./animal/AnimalList";
 import { CustomerCard } from "./customer/CustomerCard";
+import { CustomerProvider } from "./customer/CustomerProvider"
+import { CustomerList } from "./customer/CustomerList"
 import { EmployeeCard } from "./employee/EmployeeCard";
 
 export const ApplicationViews = () => {
@@ -29,9 +31,11 @@ export const ApplicationViews = () => {
       </AnimalProvider>
 
       {/* Render the animal list when http://localhost:3000/customers */}
-      <Route path="/customers">
-        <CustomerCard />
-      </Route>
+      <CustomerProvider>
+        <Route exact path="/customers">
+          <CustomerList />
+        </Route>
+      </CustomerProvider>
 
       {/* Render the animal list when http://localhost:3000/employees */}
       <Route path="/employees">
