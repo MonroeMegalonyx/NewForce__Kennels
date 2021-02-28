@@ -1,14 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { Home } from "./Home";
-import { LocationCard } from "./location/LocationCard";
-import { AnimalCard } from "./animal/AnimalCard";
+//import { LocationCard } from "./location/LocationCard";
+import { LocationProvider } from "./location/LocationProvider";
+import { LocationList } from "./location/LocationList";
+//import { AnimalCard } from "./animal/AnimalCard";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { AnimalList } from "./animal/AnimalList";
-import { CustomerCard } from "./customer/CustomerCard";
+//import { CustomerCard } from "./customer/CustomerCard";
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
-import { EmployeeCard } from "./employee/EmployeeCard";
+//import { EmployeeCard } from "./employee/EmployeeCard";
+import { EmployeeProvider } from "./employee/EmployeeProvider";
+import { EmployeeList } from "./employee/EmployeeList";
+
 
 export const ApplicationViews = () => {
   return (
@@ -19,9 +24,11 @@ export const ApplicationViews = () => {
       </Route>
 
       {/* Render the animal list when http://localhost:3000/locations */}
-      <Route path="/Locations">
-        <LocationCard />
+      <LocationProvider>
+      <Route exact path="/locations">
+        <LocationList />
       </Route>
+    </LocationProvider>
 
       {/* Render the animal list when http://localhost:3000/animals */}
       <AnimalProvider>
@@ -38,9 +45,11 @@ export const ApplicationViews = () => {
       </CustomerProvider>
 
       {/* Render the animal list when http://localhost:3000/employees */}
-      <Route path="/employees">
-        <EmployeeCard />
+      <EmployeeProvider>
+      <Route exact path="/employees">
+        <EmployeeList />
       </Route>
+    </EmployeeProvider>
     </>
   );
 };
