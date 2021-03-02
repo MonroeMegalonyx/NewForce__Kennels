@@ -56,7 +56,7 @@ export const AnimalForm = () => {
       newAnimal.locationId = intlocationId
       newAnimal.customerId = intcustomerId
       
-      if (intlocationId === 0) {
+      if (intlocationId === 0 || intcustomerId === 0) {
         window.alert("Please select a location")
       } else {
         //invoke addAnimal passing animal as an argument.
