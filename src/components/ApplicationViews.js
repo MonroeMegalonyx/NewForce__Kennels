@@ -7,6 +7,7 @@ import { LocationList } from "./location/LocationList";
 //import { AnimalCard } from "./animal/AnimalCard";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { AnimalList } from "./animal/AnimalList";
+import { AnimalForm } from "./animal/AnimalForm"
 //import { CustomerCard } from "./customer/CustomerCard";
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
@@ -37,15 +38,18 @@ export const ApplicationViews = () => {
         </Route>
       </AnimalProvider> */}
       
-      {/* Render the animal form when http://localhost:3000/animals/create */}
+      {/* Render the animal form when http://localhost:3000/animals/animals */}
       <AnimalProvider>
-        <LocationProvider>
-          <CustomerProvider>
+        <CustomerProvider>
+          <LocationProvider>
             <Route exact path="/animals">
-              <AnimalList />
+               <AnimalList />
             </Route>
-          </CustomerProvider>
-        </LocationProvider>
+            <Route exact path="/animals/create">
+              <AnimalForm />
+            </Route>
+          </LocationProvider>
+        </CustomerProvider>
       </AnimalProvider>
 
       {/* Render the animal list when http://localhost:3000/customers */}
