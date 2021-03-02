@@ -4,16 +4,18 @@ import { Home } from "./Home";
 //import { LocationCard } from "./location/LocationCard";
 import { LocationProvider } from "./location/LocationProvider";
 import { LocationList } from "./location/LocationList";
+import { LocationForm } from "./location/LocationForm";
 //import { AnimalCard } from "./animal/AnimalCard";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { AnimalList } from "./animal/AnimalList";
-import { AnimalForm } from "./animal/AnimalForm"
+import { AnimalForm } from "./animal/AnimalForm";
 //import { CustomerCard } from "./customer/CustomerCard";
 import { CustomerProvider } from "./customer/CustomerProvider"
 import { CustomerList } from "./customer/CustomerList"
 //import { EmployeeCard } from "./employee/EmployeeCard";
 import { EmployeeProvider } from "./employee/EmployeeProvider";
 import { EmployeeList } from "./employee/EmployeeList";
+import { EmployeeForm } from "./employee/EmployeeForm";
 
 
 export const ApplicationViews = () => {
@@ -26,10 +28,13 @@ export const ApplicationViews = () => {
 
       {/* Render the animal list when http://localhost:3000/locations */}
       <LocationProvider>
-      <Route exact path="/locations">
-        <LocationList />
-      </Route>
-    </LocationProvider>
+        <Route exact path="/locations">
+          <LocationList />
+        </Route>
+        <Route exact path="/locations/create">
+          <LocationForm />
+        </Route>
+      </LocationProvider>
 
       {/* Render the animal list when http://localhost:3000/animals */}
       {/* <AnimalProvider>
@@ -61,10 +66,15 @@ export const ApplicationViews = () => {
 
       {/* Render the animal list when http://localhost:3000/employees */}
       <EmployeeProvider>
-      <Route exact path="/employees">
-        <EmployeeList />
-      </Route>
-    </EmployeeProvider>
+        <LocationProvider>
+          <Route exact path="/employees">
+            <EmployeeList />
+          </Route>
+          <Route exact path="/employees/create">
+            <EmployeeForm />
+          </Route>
+        </LocationProvider>
+      </EmployeeProvider>
     </>
   );
 };
