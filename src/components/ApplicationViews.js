@@ -5,7 +5,7 @@ import { Home } from "./Home";
 import { LocationProvider } from "./location/LocationProvider";
 import { LocationList } from "./location/LocationList";
 import { LocationForm } from "./location/LocationForm";
-//import { LocationDetail } from "./location/LocationDetail";
+import { LocationDetail } from "./location/LocationDetail";
 //import { AnimalCard } from "./animal/AnimalCard";
 import { AnimalProvider } from "./animal/AnimalProvider";
 import { AnimalList } from "./animal/AnimalList";
@@ -36,6 +36,9 @@ export const ApplicationViews = () => {
         </Route>
         <Route exact path="/locations/create">
           <LocationForm />
+        </Route>
+        <Route exact path="/locations/detail/:locationId(\d+)">
+          <LocationDetail />
         </Route>
       </LocationProvider>
 

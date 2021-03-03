@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+/* import React, { useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import { LocationContext } from "./LocationProvider"
 import { Location } from "./Location"
@@ -41,4 +41,38 @@ export const LocationList = () => {
       </div>
     </>
   )  
+} */
+
+import React, { useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom";
+import { LocationContext } from "./LocationProvider"
+import { Location } from "./Location"
+import "./Location.css"
+
+export const LocationList = ({ history }) => {
+    const { getLocations, locations } = useContext(LocationContext)
+
+    // Initialization effect hook -> Go get animal data
+    useEffect(()=>{
+        getLocations()
+    }, [])
+    
+    history = useHistory();
+
+    return (
+        <>
+            <h2>Locations</h2>
+
+            <button onClick={() => history.push("/locations/create")}>
+                Add Location
+            </button>
+            <div className="locations">
+                {
+                    locations.map(location => {
+                        return <Location key={location.id} location={location} />
+                    })
+                }
+            </div>
+        </>
+    )
 }
