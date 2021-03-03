@@ -35,9 +35,17 @@ export const EmployeeProvider = (props) => {
         employees,
         getEmployees,
         addEmployee,
+        getEmployeeById,
       }}
     >
       {props.children}
     </EmployeeContext.Provider>
   );
 };
+/* 
+Add the following method to the animal provider. It allows any component to get a single animal, but with the location and customer objects embedded inside the response.
+*/ 
+const getEmployeeById = (id) => { 
+  return fetch(`http://localhost:8088/employees/${id}?_expand=location`)
+      .then(res => res.json())
+}

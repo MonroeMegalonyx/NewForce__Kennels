@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+/* import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { EmployeeContext } from "./EmployeeProvider";
 import { LocationContext } from "../location/LocationProvider";
@@ -43,4 +43,38 @@ export const EmployeeList = () => {
       </div>
     </>
   );
-};
+}; */
+
+import React, { useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom";
+import { EmployeeContext } from "./EmployeeProvider"
+import { Employee } from "./Employee"
+import "./Employee.css"
+
+export const EmployeeList = ({ history }) => {
+    const { getEmployees, employees } = useContext(EmployeeContext)
+
+    // Initialization effect hook -> Go get animal data
+    useEffect(()=>{
+        getEmployees()
+    }, [])
+    
+    history = useHistory();
+
+    return (
+        <>
+            <h2>Employees</h2>
+
+            <button onClick={() => history.push("/employees/create")}>
+                Add Employee
+            </button>
+            <div className="employees">
+                {
+                    employees.map(employee => {
+                        return <Employee key={employee.id} employee={employee} />
+                    })
+                }
+            </div>
+        </>
+    )
+}
