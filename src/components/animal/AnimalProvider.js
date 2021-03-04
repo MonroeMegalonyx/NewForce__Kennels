@@ -26,6 +26,24 @@ export const AnimalProvider = (props) => {
     .then(response => response.json())
   }
 
+  /* 
+  Add the following method to the animal provider. It allows any component to get a single animal, but with the location and customer objects embedded inside the response.
+  */ 
+  const getAnimalById = (id) => { 
+    return fetch(`http://localhost:8088/animals/${id}?_expand=location&_expand=customer`)
+        .then(res => res.json())
+  }
+  
+  /*
+  Since the provider components handle all interactions with the database, you need to implement a function that performs a fetch operation with the DELETE method to delete a specific animal.
+  */
+  const releaseAnimal = animalId => {
+    return fetch(`http://localhost:8088/animals/${animalId}`, {
+        method: "DELETE"
+    })
+        .then(getAnimals)
+  }
+  
   /*
 				You return a context provider which has the
 				`animals` state, `getAnimals` function,
@@ -39,17 +57,10 @@ export const AnimalProvider = (props) => {
         getAnimals,
         addAnimal,
         getAnimalById,
+        releaseAnimal
       }}
     >
       {props.children}
     </AnimalContext.Provider>
   );
 };
-
-/* 
-Add the following method to the animal provider. It allows any component to get a single animal, but with the location and customer objects embedded inside the response.
-*/ 
-const getAnimalById = (id) => { 
-  return fetch(`http://localhost:8088/animals/${id}?_expand=location&_expand=customer`)
-      .then(res => res.json())
-}

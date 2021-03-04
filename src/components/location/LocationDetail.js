@@ -17,27 +17,22 @@ export const LocationDetail = () => {
       setLocation(response);
     });
   }, []);
-  
-  // Added these lines from the list function to test if map function would work on locations object when I cant get it working in location from GetbyID function
-  const { getLocations, locations } = useContext(LocationContext)
-  useEffect(()=>{
-      getLocations()
-  }, [])
-
-  console.log("location", location);
 
   return (
     <>
       <section className="location">
         <h3 className="location__name">{location.name}</h3>
         <div className="location__address">{location.address}</div>
-        <div className="location__employees">
-          {
-            locations.map(location => {
-                return <>Hello</>
-            })
-        }
+        <div className="location__animals">
+          <h3>Animals</h3>
+          {location.animals?.map(animal =>
+              <p>{animal.name}</p>)}
         </div>
+        <div className="location__employees">
+          <h3>Employees</h3>
+          {location.employees?.map(employee =>
+            <p>{employee.name}</p>)}
+      </div>
       </section>
     </>
   );
